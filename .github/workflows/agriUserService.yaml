@@ -1,0 +1,40 @@
+name: UserService CI/CD
+
+on:
+  push:
+    paths:
+      - 'AgriUserService/**'
+  pull_request:
+    paths:
+      - 'AgriUserService/**'
+
+jobs:
+  build:
+    name: Build AgriUserService
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: AgriUserService
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with Maven
+        run: mvn clean install
+
+      # Optional: Docker Build & Push
+      - name: Build Docker image
+        run: docker build -t rohitsrajput04/agri-user-service:latest .
+
+      - name: Push Docker image
+        run: |
+          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+          docker push rohitsrajput04/agri-user-service:latest
