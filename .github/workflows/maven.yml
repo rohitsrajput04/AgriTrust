@@ -9,12 +9,10 @@ on:
 permissions:
   contents: read
   actions: read
-  security-events: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
 
@@ -29,8 +27,4 @@ jobs:
       working-directory: AgriGatewayService
       run: mvn -B package --file pom.xml
 
-    - name: Update dependency graph
-      uses: advanced-security/maven-dependency-submission-action@v3
-      with:
-        directory: AgriGatewayService
-        token: ${{ secrets.GITHUB_TOKEN }}
+    # Dependency graph submission step REMOVED
