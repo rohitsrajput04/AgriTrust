@@ -1,7 +1,6 @@
 package com.agritrust.user.dto;
 
 import lombok.Data;
-
 @Data
 public class UserDTO {
     private String user_id;
