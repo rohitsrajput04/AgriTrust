@@ -29,3 +29,4 @@ jobs:
       uses: advanced-security/maven-dependency-submission-action@v3
       with:
         directory: AgriGatewayService
+        token: ${{ secrets.GITHUB_TOKEN }}
