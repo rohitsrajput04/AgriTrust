@@ -22,7 +22,6 @@ public class GatewayController {
     public Mono<String> health() {
         return Mono.just("AgriGatewayService is running!");
     }
-
     @GetMapping("/status")
     @Operation(summary = "Gateway status", description = "Get the current status of the gateway")
     @ApiResponses(value = {
