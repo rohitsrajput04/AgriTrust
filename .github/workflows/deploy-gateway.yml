@@ -1,0 +1,37 @@
+name: Deploy Gateway to Cloud Run
+
+on:
+  push:
+    branches: [ main ]  # or change to your branch
+
+jobs:
+  deploy:
+    name: Build and Deploy to Cloud Run
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v3
+
+    - name: Authenticate with Google Cloud
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    - name: Configure Docker for GCP
+      run: gcloud auth configure-docker
+
+    - name: Build and Push Docker Image
+      run: |
+        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service .
+        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service
+
+    - name: Deploy to Cloud Run
+      uses: google-github-actions/deploy-cloudrun@v2
+      with:
+        service: gateway-service
+        image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service
+        region: asia-south1 # or your region
