@@ -38,3 +38,7 @@ jobs:
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
           docker push rohitsrajput04/agri-user-service:latest
+      - name: Print Docker image digest
+        run: |
+          docker inspect --format='{{index .RepoDigests 0}}' rohitsrajput04/agri-user-service:latest
+
