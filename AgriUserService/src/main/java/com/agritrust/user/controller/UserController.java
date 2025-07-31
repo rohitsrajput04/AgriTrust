@@ -1,5 +1,4 @@
 package com.agritrust.user.controller;
-
 import com.agritrust.user.entity.User;
 import com.agritrust.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
