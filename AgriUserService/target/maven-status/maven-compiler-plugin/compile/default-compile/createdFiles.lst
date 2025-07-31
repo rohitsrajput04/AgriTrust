@@ -1,7 +1,0 @@
-com/agritrust/user/controller/UserRestController.class
-com/agritrust/user/AgriUserServiceApplication.class
-com/agritrust/user/service/UserService.class
-com/agritrust/user/repository/UserRepository.class
-com/agritrust/user/entity/User.class
-com/agritrust/user/controller/UserController.class
-com/agritrust/user/dto/UserDTO.class
