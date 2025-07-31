@@ -1,0 +1,6 @@
+steps:
+  - name: 'gcr.io/cloud-builders/mvn'
+    args: ['clean', 'install']
+  - name: 'gcr.io/cloud-builders/mvn'
+    args: ['test']
+timeout: '900s'

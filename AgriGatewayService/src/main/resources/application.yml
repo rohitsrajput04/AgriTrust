@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: agri-gateway-service
+  graphql:
+    graphiql:
+      enabled: true
+    schema:
+      locations: classpath:graphql/
+      file-extensions: .graphqls
+
+# Swagger/OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+    doc-expansion: none
+  packages-to-scan: com.agritrust.gateway.controller
+
+logging:
+  level:
+    com.agritrust: DEBUG
+    org.springframework.graphql: DEBUG 

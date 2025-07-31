@@ -1,0 +1,5 @@
+# Apollo Federation Gateway schema placeholder
+
+type Query {
+    _service: String
+} 
