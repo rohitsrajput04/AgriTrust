@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
+    <option name="projectFiles" value="$PROJECT_DIR$/src/main/java/com/agritrust/user/controller/UserController.java;/Users/rsrajput/Downloads/personalProjects/AgriTrustAppBackend/AgriUserService/src/main/java/com/agritrust/user/controller/UserRestController.java;/Users/rsrajput/Downloads/personalProjects/AgriTrustAppBackend/AgriUserService/src/main/java/com/agritrust/user/dto/UserDTO.java;/Users/rsrajput/Downloads/personalProjects/AgriTrustAppBackend/AgriUserService/src/main/java/com/agritrust/user/entity/User.java;/Users/rsrajput/Downloads/personalProjects/AgriTrustAppBackend/AgriUserService/src/main/java/com/agritrust/user/repository/UserRepository.java;/Users/rsrajput/Downloads/personalProjects/AgriTrustAppBackend/AgriUserService/src/main/java/com/agritrust/user/service/UserService.java;/Users/rsrajput/Downloads/personalProjects/AgriTrustAppBackend/AgriUserService/src/main/java/com/agritrust/user/AgriUserServiceApplication.java" />
+  </component>
+</project>

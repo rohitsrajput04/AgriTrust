@@ -1,0 +1,33 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: agri-user-service
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: yourDatabase
+  graphql:
+    graphiql:
+      enabled: true
+    schema:
+      locations: classpath:graphql/
+      file-extensions: .graphqls
+
+# Swagger/OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+    doc-expansion: none
+  packages-to-scan: com.agritrust.user.controller
+
+logging:
+  level:
+    com.agritrust: DEBUG
+    org.springframework.graphql: DEBUG
