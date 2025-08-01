@@ -2,7 +2,7 @@ name: Deploy Gateway to Cloud Run
 
 on:
   push:
-    branches: [ main ]  # or change to your branch
+    branches: [ main ]  # Trigger on push to main branch
 
 jobs:
   deploy:
@@ -21,12 +21,15 @@ jobs:
       with:
         credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-    - name: Configure Docker for GCP
-      run: gcloud auth configure-docker
+    - name: Set Project ID
+      run: gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
+
+    - name: Configure Docker for Artifact Registry / GCR
+      run: gcloud auth configure-docker gcr.io
 
     - name: Build and Push Docker Image
       run: |
-        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service
+        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service .
         docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service
 
     - name: Deploy to Cloud Run
@@ -34,4 +37,5 @@ jobs:
       with:
         service: gateway-service
         image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service
-        region: asia-south1 # or your region
+        region: asia-south1
+        allow-unauthenticated: true  # Optional: for public endpoint access
