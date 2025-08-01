@@ -38,11 +38,13 @@ jobs:
 
       - name: Push Docker image
         run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service
-
+        
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: gateway-service
           image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service
           region: asia-south1
-          allow-unauthenticated: true
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          timeout: 600s
+          flags: '--allow-unauthenticated'
