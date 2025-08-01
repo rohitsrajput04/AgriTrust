@@ -1,4 +1,4 @@
 # Dockerfile
 FROM openjdk:17-jdk-slim
-COPY target/gateway-service.jar app.jar
+COPY target/*gateway*.jar app.jar
 ENTRYPOINT ["java", "-jar", "/app.jar"]
