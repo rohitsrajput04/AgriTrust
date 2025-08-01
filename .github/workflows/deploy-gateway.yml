@@ -26,7 +26,7 @@ jobs:
 
     - name: Build and Push Docker Image
       run: |
-        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service .
+        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service
         docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service
 
     - name: Deploy to Cloud Run
