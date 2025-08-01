@@ -13,6 +13,7 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/api/gateway")
 @Tag(name = "Gateway Management", description = "APIs for the AgriTrust Gateway Service")
 public class GatewayController {
+    
     @GetMapping("/health")
     @Operation(summary = "Gateway health check", description = "Check if the gateway service is running")
     @ApiResponses(value = {
