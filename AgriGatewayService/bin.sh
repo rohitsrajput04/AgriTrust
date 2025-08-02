@@ -20,7 +20,7 @@ echo "📁 Step 3: Copying JAR to app.jar"
 cp "$JAR_FILE" app.jar
 
 echo "🐳 Step 4: Building Docker image..."
-docker build -t gcr.io/${secrets.GCP_PROJECT_ID}/agri-gateway-service .
+docker build -t gcr.io/agritrust-467607/agri-gateway-service .
 
 # Optional cleanup
 echo "🧹 Cleaning up temporary app.jar..."
