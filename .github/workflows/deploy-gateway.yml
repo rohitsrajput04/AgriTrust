@@ -56,9 +56,9 @@ jobs:
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: gateway-service
-          image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service
+          image: gcr.io/agritrust-467607/agri-gateway-service
           region: asia-south1
-          timeout: 700
-
+          timeout: 900
+          flags: --allow-unauthenticated
           allow-unauthenticated: true
           
