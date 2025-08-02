@@ -8,7 +8,8 @@ WORKDIR /app
 ARG JAR_NAME
 
 # Copy the JAR into container
-COPY target/*gateway*.jar app.jar
+#COPY target/*gateway*.jar app.jar
+COPY target/agri-gateway-service-1.0.0.jar app.jar
 
 # Expose port used by Spring Boot
 EXPOSE 8080
