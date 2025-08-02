@@ -18,6 +18,6 @@ if [ ! -d "target" ]; then
 fi
 
 # Build and push Docker image
-IMAGE_NAME="gcr.io/$GCP_PROJECT_ID/agri-gateway-service"
+IMAGE_NAME="gcr.io/agritrust-467607/agri-gateway-service"
 docker build -t $IMAGE_NAME .
 docker push $IMAGE_NAME
