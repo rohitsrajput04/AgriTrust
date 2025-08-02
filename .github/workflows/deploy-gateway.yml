@@ -53,13 +53,13 @@ jobs:
         
       - name: Deploy to Cloud Run
         run: |
-            gcloud run deploy agri-gateway-service \
-              --image gcr.io/agritrust-467607/agri-gateway-service:$GITHUB_SHA \
-              --platform managed \
-              --region asia-south1 \
-              --allow-unauthenticated \
-              --port 8080 \
-              --memory 512Mi \
-              --max-instances 3 \
-              --timeout 300s \
-              --quiet
+          gcloud run deploy agri-gateway-service \
+            --image asia-south1-docker.pkg.dev/agritrust-467607/artifact-repo/agri-gateway-service:$GITHUB_SHA \
+            --platform managed \
+            --region asia-south1 \
+            --allow-unauthenticated \
+            --port 8080 \
+            --memory 512Mi \
+            --max-instances 3 \
+            --timeout 300s \
+            --quiet
