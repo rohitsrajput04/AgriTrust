@@ -1,24 +1,18 @@
 #!/bin/bash
+
 set -e
+
+SERVICE_NAME=gateway
+PROJECT_ID=${GCP_PROJECT_ID}
+IMAGE_NAME=gcr.io/$PROJECT_ID/$SERVICE_NAME
 
 cd AgriGatewayService
 
-# 1. Build the project using system Maven
-mvn clean package -DskipTests
+# If you are using Maven Wrapper, make sure mvnw exists
+./mvnw clean package -DskipTests
 
-# 2. Find the generated JAR file
-JAR_FILE=$(find target -type f -name "*.jar" | head -n 1)
+# Build Docker image
+docker build -t $IMAGE_NAME .
 
-if [[ -z "$JAR_FILE" ]]; then
-  echo "❌ JAR file not found in target directory!"
-  exit 1
-fi
-
-# 3. Copy JAR to current directory for Dockerfile
-cp "$JAR_FILE" app.jar
-
-# 4. Build Docker image
-docker build -t gcr.io/$GCP_PROJECT_ID/agri-gateway-service .
-
-# 5. Push Docker image
-docker push gcr.io/$GCP_PROJECT_ID/agri-gateway-service
+# Push Docker image
+docker push $IMAGE_NAME
