@@ -8,7 +8,7 @@ RUN mvn clean package -DskipTests
 # Run stage
 FROM eclipse-temurin:17-jdk
 WORKDIR /app
-COPY  /target/*.jar /app/app.jar
+COPY target/*gateway*.jar app.jar
 EXPOSE 8080
 ENV PORT=8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
