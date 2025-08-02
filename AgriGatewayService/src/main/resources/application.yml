@@ -3,9 +3,17 @@ server:
   address: 0.0.0.0
 
 
+
 spring:
   application:
     name: agri-gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: agri-user-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/agri-user-service/**
   graphql:
     graphiql:
       enabled: true
