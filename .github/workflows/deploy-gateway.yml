@@ -35,7 +35,8 @@ jobs:
         run: mvn clean package -DskipTests
         
       - name: Build Docker image
-        run: docker build -t us-docker.pkg.dev/agritrust-467607/agri-gateway-service/agri-gateway-service:latest .
+        run: |
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service:latest -f AgriGatewayService/Dockerfile AgriGatewayService/
 
 
       - name:  push Docker image
