@@ -9,7 +9,7 @@ IMAGE_NAME=gcr.io/$PROJECT_ID/$SERVICE_NAME
 cd AgriGatewayService
 
 # If you are using Maven Wrapper, make sure mvnw exists
-./mvnw clean package -DskipTests
+mvn clean package -DskipTests
 
 # Build Docker image
 docker build -t $IMAGE_NAME .
