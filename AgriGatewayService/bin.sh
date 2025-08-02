@@ -1,18 +1,29 @@
 #!/bin/bash
+
+# Fail fast
 set -e
 
-# Clean and build using system Maven (remove ./mvnw)
-mvn clean package -DskipTests
+# Set your project ID
+GCP_PROJECT_ID="agritrust-467607"
+SERVICE_NAME="agri-gateway-service"
 
-# Dynamically find the jar file name
+# Find JAR dynamically
 JAR_NAME=$(basename $(find target -name '*gateway*.jar' | head -n 1))
 
-if [ -z "$JAR_NAME" ]; then
-  echo "❌ No matching JAR file found in target/"
-  exit 1
-fi
+# Authenticate with gcloud if not already done
+#gcloud auth login
+#gcloud config set project $GCP_PROJECT_ID
 
-echo "✅ Found JAR: $JAR_NAME"
+# Build docker image with the JAR name as build-arg
+docker build --build-arg JAR_NAME=$JAR_NAME -t gcr.io/$GCP_PROJECT_ID/$SERVICE_NAME .
 
-# Docker build using dynamic JAR name
-docker build --build-arg JAR_NAME=$JAR_NAME -t gcr.io/agritrust-467607/agri-gateway-service .
+# Push to GCR
+docker push gcr.io/$GCP_PROJECT_ID/$SERVICE_NAME
+
+# Deploy to Cloud Run
+gcloud run deploy $SERVICE_NAME \
+  --image gcr.io/$GCP_PROJECT_ID/$SERVICE_NAME \
+  --platform managed \
+  --region asia-south1 \
+  --allow-unauthenticated \
+  --timeout 600
