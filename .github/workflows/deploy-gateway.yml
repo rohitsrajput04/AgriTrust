@@ -55,8 +55,6 @@ jobs:
         run: |
           gcloud run deploy agri-gateway-service \
           --image gcr.io/agritrust-467607/agri-gateway-service@sha256:5b2f863a6916fdffe6c4ecf3f26d432e7c7727e8dd9f76d67fa8a5273485d692 \
-          --platform managed \
           --region asia-south1 \
           --allow-unauthenticated \
-          --port 8080 \
-          --timeout 600s \
+          --timeout 300s \
