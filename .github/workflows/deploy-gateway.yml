@@ -32,6 +32,8 @@ jobs:
 
       - name: Configure Docker for GCR
         run: gcloud auth configure-docker gcr.io
+      - name: Make script executable
+        run: chmod +x build.sh
 
         
       - name: Run build script (bin.sh)
