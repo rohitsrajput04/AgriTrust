@@ -33,8 +33,14 @@ jobs:
       - name: Build with Maven
         working-directory: AgriGatewayService
         run: mvn clean package -DskipTests
-
-      - name: Build and push Docker image
+        
+      - name: Build Docker image
+        run: |
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service:latest \
+            -f AgriGatewayService/Dockerfile \
+            AgriGatewayService
+              
+      - name:  push Docker image
         run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service:latest
 
       - name: Deploy to Cloud Run
