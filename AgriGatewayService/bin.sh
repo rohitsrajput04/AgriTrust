@@ -15,4 +15,4 @@ fi
 echo "✅ Found JAR: $JAR_NAME"
 
 # Docker build using dynamic JAR name
-docker build --build-arg JAR_NAME=$JAR_NAME -t gcr.io/$GCP_PROJECT_ID/agri-gateway-service .
+docker build --build-arg JAR_NAME=$JAR_NAME -t gcr.io/agritrust-467607/agri-gateway-service .
