@@ -51,7 +51,7 @@ jobs:
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
         with:
-          service: gateway-service
+          service: agri-gateway-service
           image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service
           region: asia-south1
           project_id: ${{ secrets.GCP_PROJECT_ID }}
