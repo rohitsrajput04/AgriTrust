@@ -33,6 +33,11 @@ jobs:
       - name: Configure Docker for GCR
         run: gcloud auth configure-docker gcr.io
 
+        
+      - name: Run build script (build.sh)
+        run: ./build.sh
+
+
       - name: Build Docker image
         run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service .
 
