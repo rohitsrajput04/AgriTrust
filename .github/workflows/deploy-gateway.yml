@@ -33,15 +33,21 @@ jobs:
       - name: Build with Maven
         working-directory: AgriGatewayService
         run: mvn clean package -DskipTests
-        
+
+      - name: Configure Docker for Artifact Registry
+        run: |
+          gcloud auth configure-docker us-docker.pkg.dev
+
       - name: Build Docker image
         run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service:latest -f AgriGatewayService/Dockerfile AgriGatewayService/
+          docker build -t us-docker.pkg.dev/YOUR_PROJECT_ID/agri-gateway-service/agri-gateway-service:latest .
 
-      - name: Push Docker Image
+      - name: Push Docker image
         run: |
-          docker push us-docker.pkg.dev/agritrust-467607/agri-gateway-service/agri-gateway-service:latest
-          
+          docker push us-docker.pkg.dev/YOUR_PROJECT_ID/agri-gateway-service/agri-gateway-service:latest
+
+        
+    
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
         with:
