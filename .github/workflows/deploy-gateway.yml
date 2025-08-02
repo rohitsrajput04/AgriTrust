@@ -58,4 +58,7 @@ jobs:
           service: gateway-service
           image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service
           region: asia-south1
+          timeout: 700
+
           allow-unauthenticated: true
+          
