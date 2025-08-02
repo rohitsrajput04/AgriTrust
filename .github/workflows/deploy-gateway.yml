@@ -61,5 +61,5 @@ jobs:
           --port 8080 \
           --memory 512Mi \
           --max-instances 3 \
-          --timeout 300s \
+          --timeout 600s \
           --quiet
