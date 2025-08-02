@@ -1,18 +1,23 @@
 #!/bin/bash
-
 set -e
 
-SERVICE_NAME=gateway
-PROJECT_ID=${GCP_PROJECT_ID}
-IMAGE_NAME=gcr.io/$PROJECT_ID/$SERVICE_NAME
+# Optional: Go to the project directory
+cd "$(dirname "$0")"
 
-cd AgriGatewayService
+# Use local mvn wrapper or system mvn
+if [ -f "./mvnw" ]; then
+  ./mvnw clean package -DskipTests
+else
+  mvn clean package -DskipTests
+fi
 
-# If you are using Maven Wrapper, make sure mvnw exists
-mvn clean package -DskipTests
+# Ensure target exists
+if [ ! -d "target" ]; then
+  echo "❌ Maven build failed. 'target' directory not found."
+  exit 1
+fi
 
-# Build Docker image
+# Build and push Docker image
+IMAGE_NAME="gcr.io/$GCP_PROJECT_ID/agri-gateway-service"
 docker build -t $IMAGE_NAME .
-
-# Push Docker image
 docker push $IMAGE_NAME
