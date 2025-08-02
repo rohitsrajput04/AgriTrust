@@ -34,8 +34,8 @@ jobs:
         run: gcloud auth configure-docker gcr.io
 
         
-      - name: Run build script (build.sh)
-        run: ./build.sh
+      - name: Run build script (bin.sh)
+        run: ./bin.sh
 
 
       - name: Build Docker image
