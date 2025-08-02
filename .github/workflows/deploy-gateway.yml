@@ -39,13 +39,6 @@ jobs:
       - name: Push Docker image
         run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service
 
-      - name: Set Cloud Run IAM Policy
-        run: |
-          gcloud run services add-iam-policy-binding gateway-service \
-          --region=asia-south1 \
-          --member="allUsers" \
-          --role="roles/run.invoker"
-   
         
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
