@@ -34,16 +34,16 @@ jobs:
         run: gcloud auth configure-docker gcr.io
 
       - name: Build Docker image
-        run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service .
+        run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service .
 
       - name: Push Docker image
-        run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service
+        run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service
         
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: gateway-service
-          image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/gateway-service
+          image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service
           region: asia-south1
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           timeout: 600s
