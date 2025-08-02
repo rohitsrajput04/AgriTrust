@@ -28,7 +28,7 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
 
       - name: Make build.sh executable
-        run: chmod +x ./build.sh
+        run: chmod +x AgriGatewayService/build.sh
 
       - name: Build and push Docker image
         run: ./build.sh
