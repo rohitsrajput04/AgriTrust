@@ -35,13 +35,11 @@ jobs:
         run: mvn clean package -DskipTests
         
       - name: Build Docker image
-        run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service:latest \
-            -f AgriGatewayService/Dockerfile \
-            AgriGatewayService
-              
+        run: docker build -t us-docker.pkg.dev/agritrust-467607/agri-gateway-service/agri-gateway-service:latest .
+
+
       - name:  push Docker image
-        run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service:latest
+        run: docker push us-docker.pkg.dev/agritrust-467607/agri-gateway-service/agri-gateway-service:latest
 
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
