@@ -1,17 +1,29 @@
 #!/bin/bash
 
-# Find the first JAR matching pattern
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+echo "📦 Step 1: Building Maven project..."
+mvn clean package -DskipTests
+
+echo "🔍 Step 2: Searching for JAR file..."
 JAR_FILE=$(find target -type f -name '*gateway*.jar' | head -n 1)
 
 if [ -z "$JAR_FILE" ]; then
-  echo "❌ No JAR file found matching '*gateway*.jar'"
+  echo "❌ No matching JAR file found!"
   exit 1
 fi
 
 echo "✅ Found JAR: $JAR_FILE"
 
-# Copy with static name so Docker can COPY it
+echo "📁 Step 3: Copying JAR to app.jar"
 cp "$JAR_FILE" app.jar
 
-# Build Docker image
-docker build -t gcr.io/${GCP_PROJECT_ID}/agri-gateway-service .
+echo "🐳 Step 4: Building Docker image..."
+docker build -t gcr.io/YOUR_PROJECT_ID/agri-gateway-service .
+
+# Optional cleanup
+echo "🧹 Cleaning up temporary app.jar..."
+rm app.jar
+
+echo "🎉 Done! Docker image built successfully."
