@@ -45,7 +45,7 @@ jobs:
         run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service .
 
       - name: Push Docker image
-        run: docker push gcr.io/${ secrets.GCP_PROJECT_ID }/agri-gateway-service
+        run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/agri-gateway-service
 
         
       - name: Deploy to Cloud Run
