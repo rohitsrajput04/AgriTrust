@@ -51,14 +51,15 @@ jobs:
         run: docker push gcr.io/agritrust-467607/agri-gateway-service
 
         
-    
       - name: Deploy to Cloud Run
-        uses: google-github-actions/deploy-cloudrun@v2
-        with:
-          service: gateway-service
-          image: gcr.io/agritrust-467607/agri-gateway-service
-          region: asia-south1
-          timeout: 900
-          flags: --allow-unauthenticated
-          allow-unauthenticated: true
-          
+        run: |
+            gcloud run deploy agri-gateway-service \
+              --image gcr.io/agritrust-467607/agri-gateway-service:$GITHUB_SHA \
+              --platform managed \
+              --region asia-south1 \
+              --allow-unauthenticated \
+              --port 8080 \
+              --memory 512Mi \
+              --max-instances 3 \
+              --timeout 300s \
+              --quiet
