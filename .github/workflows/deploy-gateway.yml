@@ -36,8 +36,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/gcr.io/agri-gateway-service:latest -f AgriGatewayService/Dockerfile ./AgriGatewayService
-          docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/gcr.io/agri-gateway-service:latest
+          docker build -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/AgriTrust/agri-gateway-service:latest -f AgriGatewayService/Dockerfile ./AgriGatewayService
+          docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/AgriTrust/agri-gateway-service:latest
 
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
