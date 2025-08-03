@@ -10,8 +10,8 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>agri-user-service</module>
-    <module>agri-gateway-service</module>
+    <module>AgriUserService</module>
+    <module>AgriGatewayService</module>
   </modules>
 
   <dependencyManagement>
