@@ -44,7 +44,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t gcr.io/agritrust-467607/agri-gateway-service \
-            -f AgriGatewayService/Dockerfile \
+            -f AgriTrust/AgriGatewayService/Dockerfile \
             AgriGatewayService/
 
       - name: Push Docker image
