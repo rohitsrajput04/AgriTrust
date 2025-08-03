@@ -6,7 +6,7 @@ on:
       - 'AgriUserService/**'
   pull_request:
     paths:
-      - 'AgriUserService/**'
+      - '**/AgriUserService/**'
 
 jobs:
   build:
