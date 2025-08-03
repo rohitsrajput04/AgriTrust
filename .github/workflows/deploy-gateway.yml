@@ -43,19 +43,20 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t gcr.io/agritrust-467607/agri-gateway-service \
+            docker build -t gcr.io/agritrust-467607/agri-gateway-service:${{ github.sha }} \
             -f AgriGatewayService/Dockerfile \
             AgriGatewayService/
           
 
       - name: Push Docker image
-        run: docker push gcr.io/agritrust-467607/agri-gateway-service
+        run: docker push gcr.io/agritrust-467607/agri-gateway-service:${{ github.sha }}
 
-        
+
+
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy agri-gateway-service \
-          --image gcr.io/agritrust-467607/agri-gateway-service@sha256:5b2f863a6916fdffe6c4ecf3f26d432e7c7727e8dd9f76d67fa8a5273485d692 \
+          --image gcr.io/agritrust-467607/agri-gateway-service:${{ github.sha }} \
           --region asia-south1 \
           --allow-unauthenticated \
           --timeout 300s \
